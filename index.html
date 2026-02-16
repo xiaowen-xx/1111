@@ -24,101 +24,201 @@
 </head>
 <body>
     <div class="phone-frame" id="phoneFrame">
-        <!-- ... content ... -->
-        <!-- 主屏幕 -->
-        <div class="screen-content">
-            <!-- Header -->
-            <div class="bubble-image-wrapper" id="bubbleWrapper" onclick="showMenu(event, 'header')"><img src="https://placehold.co/360x300/transparent/ccc?text=Header+Image" id="headerImg" class="bubble-image"></div>
-            
-            <div class="profile-section">
-                <img src="https://placehold.co/100x100/e0e0e0/333?text=A" alt="Avatar" class="avatar" id="avatarImg" onclick="showMenu(event, 'avatar')">
-                <div class="info-card">
-                    <div class="kaomoji" id="homeKaomoji" onclick="editText(this)">> ω <</div>
-                    <div class="text-group">
-                        <div class="handle editable-text" id="homeHandle" onclick="editText(this)">@Yueyuemiao77</div>
-                        <div class="bio editable-text" id="homeBio" onclick="editText(this)">♫ ₊˚ 幸せのメロディー ✧ ⁺</div>
-                        <div class="location" onclick="editLocation()"><i class="fas fa-map-marker-alt"></i> <span id="locationText">和鸟</span></div>
+    <div class="main-screen-swiper">
+        
+        <div class="screen-page first-page">
+            <div class="screen-content">
+                <div class="bubble-image-wrapper" id="bubbleWrapper" onclick="showMenu(event, 'header')">
+                    <img src="https://placehold.co/360x300/transparent/ccc?text=Header+Image" id="headerImg" class="bubble-image">
+                </div>
+                
+                <div class="profile-section">
+                    <img src="https://placehold.co/100x100/e0e0e0/333?text=A" alt="Avatar" class="avatar" id="avatarImg" onclick="showMenu(event, 'avatar')">
+                    <div class="info-card">
+                        <div class="kaomoji" id="homeKaomoji" onclick="editText(this)">> ω <</div>
+                        <div class="text-group">
+                            <div class="handle editable-text" id="homeHandle" onclick="editText(this)">@Yueyuemiao77</div>
+                            <div class="bio editable-text" id="homeBio" onclick="editText(this)">♫ ₊˚ 幸せのメロディー ✧ ⁺</div>
+                            <div class="location" onclick="editLocation()"><i class="fas fa-map-marker-alt"></i> <span id="locationText">和鸟</span></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="section-title" id="widgetTitle" onclick="editText(this)">Widget Island</div>
-            
-            <!-- 分栏布局 -->
-            <div class="main-layout-row">
-                <!-- 左侧 -->
-                <div class="kawaii-wrapper">
-                    <div class="avatar-row">
-                        <img src="https://placehold.co/100x100/eee/999?text=L" class="kawaii-avatar" id="kawaiiAvatarLeft" onclick="showMenu(event, 'kawaiiAvatarLeft')">
-                        <img src="https://placehold.co/100x100/ddd/888?text=R" class="kawaii-avatar" id="kawaiiAvatarRight" onclick="showMenu(event, 'kawaiiAvatarRight')">
+                
+                <div class="section-title" id="widgetTitle" onclick="editText(this)">Widget Island</div>
+                
+                <div class="main-layout-row">
+                    <div class="kawaii-wrapper">
+                        <div class="avatar-row">
+                            <img src="https://placehold.co/100x100/eee/999?text=L" class="kawaii-avatar" id="kawaiiAvatarLeft" onclick="showMenu(event, 'kawaiiAvatarLeft')">
+                            <img src="https://placehold.co/100x100/ddd/888?text=R" class="kawaii-avatar" id="kawaiiAvatarRight" onclick="showMenu(event, 'kawaiiAvatarRight')">
+                        </div>
+                        <div class="kawaii-card">
+                            <div class="kawaii-text" id="kawaiiText" onclick="editText(this)">●ω● かわいい可愛.!!</div>
+                            <div class="kawaii-white-box">
+                                <div class="kawaii-time-row"><div class="k-time-text" id="realTimeDisplay">00:00</div></div>
+                                <div class="k-date-text" id="realDateDisplay">2025-01-01</div>
+                                <div class="k-icons-row">
+                                    <div class="k-icon-btn"><i class="fas fa-wifi"></i></div>
+                                    <div class="k-icon-btn"><i class="fas fa-broadcast-tower"></i></div>
+                                    <div class="k-icon-btn"><i class="fab fa-bluetooth-b bluetooth-icon"></i></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kawaii-bottom-text" id="kawaiiBottomText" onclick="editText(this)">《My Mood》</div>
                     </div>
-                    <div class="kawaii-card">
-                        <div class="kawaii-text" id="kawaiiText" onclick="editText(this)">●ω● かわいい可愛.!!</div>
-                        <div class="kawaii-white-box">
-                            <div class="kawaii-time-row"><div class="k-time-text" id="realTimeDisplay">00:00</div></div>
-                            <div class="k-date-text" id="realDateDisplay">2025-01-01</div>
-                            <div class="k-icons-row">
-                                <div class="k-icon-btn"><i class="fas fa-wifi"></i></div>
-                                <div class="k-icon-btn"><i class="fas fa-broadcast-tower"></i></div>
-                                <div class="k-icon-btn"><i class="fab fa-bluetooth-b bluetooth-icon"></i></div>
+
+                    <div class="right-column">
+                        <div class="right-apps-row">
+                            <div class="mini-app-item">
+                                <div class="mini-app-icon" id="app5IconWrapper" onclick="openCheckPhoneSelector()">
+                                    <img src="" style="display:none;" id="app5Img">
+                                    <i class="fas fa-mobile-alt" id="app5Default" style="font-size: 24px;"></i>
+                                </div>
+                                <div class="mini-app-label" id="app5Label" onclick="editText(this)">查手机</div>
+                            </div>
+                            <div class="mini-app-item">
+                                <div class="mini-app-icon" id="app6IconWrapper" onclick="openGalleryApp()">
+                                    <img src="" style="display:none;" id="app6Img">
+                                    <i class="fas fa-images" id="app6Default" style="font-size: 24px;"></i>
+                                </div>
+                                <div class="mini-app-label" id="app6Label" onclick="editText(this)">真实相册</div>
+                            </div>
+                        </div>
+                        <div class="camera-widget">
+                            <div class="captcha-top"><div class="captcha-checkbox"></div><div class="captcha-label" onclick="editText(this)">I'm not a robot</div></div>
+                            <div class="captcha-body">
+                                <div class="captcha-input-row"><div class="captcha-input" onclick="editText(this)">Type what u see</div><div class="captcha-verify-btn">Verify</div></div>
+                                <div class="captcha-content-row">
+                                    <div class="captcha-img-container"><img src="https://placehold.co/150x80/white/333?text=Anime+Girl" class="captcha-img" id="captchaImg" onclick="showMenu(event, 'captcha')"></div>
+                                    <div class="captcha-icons-col"><i class="fas fa-sync-alt c-icon"></i><i class="fas fa-headphones c-icon"></i></div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="kawaii-bottom-text" id="kawaiiBottomText" onclick="editText(this)">《My Mood》</div>
                 </div>
 
-                <div class="right-column">
-    <div class="right-apps-row">
-        
-        <!-- 软件5：查手机入口 -->
-        <!-- 注意：必须保留 mini-app-item 这个外层包裹 -->
-        <div class="mini-app-item">
-            <div class="mini-app-icon" id="app5IconWrapper" onclick="openCheckPhoneSelector()">
-                <!-- 如果有自定义图则显示图 -->
-                <img src="" style="display:none;" id="app5Img">
-                <!-- 默认显示手机图标 -->
-                <i class="fas fa-mobile-alt" id="app5Default" style="font-size: 24px;"></i>
+                <div class="search-pill-container">
+                    <div class="search-pill"><i class="fas fa-search"></i> 搜索</div>
+                </div>
             </div>
-            <!-- 文字标签必须在 icon 下面 -->
-            <div class="mini-app-label" id="app5Label" onclick="editText(this)">查手机</div>
         </div>
-<div class="mini-app-item">
-    <!-- 修改 onclick 为 openGalleryApp() -->
-    <div class="mini-app-icon" id="app6IconWrapper" onclick="openGalleryApp()">
-        <img src="" style="display:none;" id="app6Img">
-        <!-- 换个相册图标 -->
-        <i class="fas fa-images" id="app6Default" style="font-size: 24px;"></i>
+
+        <div class="screen-page second-page" onclick="changePage2Background(event, this)">
+    
+    <div class="liquid-container main-module layout-redesign-rect">
+        <div class="top-nav-row">
+            <div class="nav-left-group">
+                <i class="fas fa-chevron-left icon-black-semi"></i>
+                <span class="editable-text-white font-songti" onclick="editText(this)">＂₊˚ 𝐹𝑜𝓇𝑒𝓋𝑒𝓇 𝒜𝓁𝓌𝒶𝓎𝓈 ⋆˚ ♡</span>
+            </div>
+            <div class="nav-right-group">
+                <i class="fas fa-home icon-black-semi"></i>
+                <i class="fas fa-ellipsis-h icon-white"></i>
+            </div>
+        </div>
+
+        <div class="status-indicators-row">
+            <div class="status-heart-group">
+                <i class="far fa-heart icon-black-semi"></i>
+                <span class="text-white font-songti">맹물...</span>
+            </div>
+            <div class="status-battery-group">
+                <span class="text-white font-songti">95%</span>
+            </div>
+            <div style="flex:1;"></div>
+        </div>
+
+        <div class="three-image-grid-square">
+            <div class="square-sharp-widget" onclick="changeWidgetImage(this)"><img src="" class="widget-img"></div>
+            <div class="square-sharp-widget" onclick="changeWidgetImage(this)"><img src="" class="widget-img"></div>
+            <div class="square-sharp-widget" onclick="changeWidgetImage(this)"><img src="" class="widget-img"></div>
+        </div>
+
+        <div class="bottom-content-row" style="margin-top: 35px; position: relative; height: 85px;">
+            <div class="bottom-left-avatar-area">
+                <div class="avatar-container" onclick="changeWidgetImage(this)">
+                    <img src="" class="widget-img">
+                    <i class="fas fa-camera camera-icon-bottom-right icon-black-semi"></i>
+                </div>
+                <div class="manga-bubble font-songti">14:53<div class="bubble-tail"></div></div>
+            </div>
+
+            <div class="bottom-right-text-area-custom shifted-center-right">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div class="text-lines-wrapper">
+                        <p class="editable-text-white line-normal font-enlarged" onclick="editText(this)">與你說些無聊事</p>
+                        <p class="editable-text-white font-songti line-normal font-enlarged" onclick="editText(this)">いつもそばいるよ</p>
+                        <p class="editable-text-white font-songti line-indent font-enlarged" onclick="editText(this)">26/2/16</p>
+                    </div>
+                    <i class="far fa-images album-icon-small icon-black-semi" style="margin-top: -10px;"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-pill-bar-taller sub-widget-premium">
+            <div class="pill-left"><i class="fas fa-heart text-white"></i></div>
+            <div class="pill-center editable-text-white font-songti" onclick="editText(this)">^보고 싶어요...ㅠ...</div>
+            <div class="pill-right-icons-taller">
+                <i class="fas fa-at icon-black-semi"></i>
+                <i class="far fa-comment-dots icon-black-semi"></i>
+                <i class="far fa-heart icon-black-semi"></i>
+            </div>
+        </div>
     </div>
-    <div class="mini-app-label" id="app6Label" onclick="editText(this)">真实相册</div>
+
+    <div class="bottom-apps-grid-container-aligned">
+    
+    <div class="left-apps-matrix">
+    <div class="app-icon-wrapper" onclick="prepareEdit('appIcon6', 'previewApp6', event)">
+        <div class="app-icon-square-aligned sub-widget-premium">
+            <img id="appIcon6" src="https://placehold.co/60/ffffff/999?text=6" class="widget-img">
+        </div>
+        <span class="app-label">App6</span>
+    </div>
+    <div class="app-icon-wrapper" onclick="prepareEdit('appIcon7', 'previewApp7', event)">
+        <div class="app-icon-square-aligned sub-widget-premium">
+            <img id="appIcon7" src="https://placehold.co/60/ffffff/999?text=7" class="widget-img">
+        </div>
+        <span class="app-label">App7</span>
+    </div>
+    <div class="app-icon-wrapper" onclick="prepareEdit('appIcon8', 'previewApp8', event)">
+        <div class="app-icon-square-aligned sub-widget-premium">
+            <img id="appIcon8" src="https://placehold.co/60/ffffff/999?text=8" class="widget-img">
+        </div>
+        <span class="app-label">App8</span>
+    </div>
+    <div class="app-icon-wrapper" onclick="prepareEdit('appIcon9', 'previewApp9', event)">
+        <div class="app-icon-square-aligned sub-widget-premium">
+            <img id="appIcon9" src="https://placehold.co/60/ffffff/999?text=9" class="widget-img">
+        </div>
+        <span class="app-label">App9</span>
+    </div>
 </div>
-                    </div>
-                    <div class="camera-widget">
-                        <div class="captcha-top"><div class="captcha-checkbox"></div><div class="captcha-label" id="captchaLabel" onclick="editText(this)">I'm not a robot</div></div>
-                        <div class="captcha-body">
-                            <div class="captcha-input-row"><div class="captcha-input" id="captchaInput" onclick="editText(this)">Type what u see</div><div class="captcha-verify-btn">Verify</div></div>
-                            <div class="captcha-content-row">
-                                <div class="captcha-img-container"><img src="https://placehold.co/150x80/white/333?text=Anime+Girl" class="captcha-img" id="captchaImg" onclick="showMenu(event, 'captcha')"></div>
-                                <div class="captcha-icons-col"><i class="fas fa-sync-alt c-icon"></i><i class="fas fa-headphones c-icon"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    
+    <div class="mini-square-widget-aligned sub-widget-premium">
+        <div class="mini-inner-grid">
+            <div class="mini-square-img-large" onclick="changeWidgetImage(this)"><img src="" class="widget-img"></div>
+            <div class="mini-right-pills-large">
+                <div class="mini-pill-white"><span class="editable-text-white font-songti" onclick="editText(this)">文案A</span></div>
+                <div class="mini-pill-white"><span class="editable-text-white font-songti" onclick="editText(this)">文案B</span></div>
             </div>
-
-            <!-- 搜索栏 -->
-            <div class="search-pill-container">
-                <div class="search-pill"><i class="fas fa-search"></i> 搜索</div>
-            </div>
-
         </div>
-        
-        <!-- Dock -->
-        <div class="dock-capsule">
-            <div class="dock-btn" onclick="openApp('Page 1')"><img id="dockIcon1" src="https://placehold.co/40/white/ccc?text=🤍" alt="Btn1"></div>
-            <div class="dock-btn" onclick="openCoupleSpace()"><img id="dockIcon2" src="https://placehold.co/40/white/ccc?text=🍷" alt="Btn2"></div>
-            <div class="dock-btn" onclick="openWallet()"><img id="dockIcon3" src="https://placehold.co/40/white/ccc?text=🐰" alt="Btn3"></div>
-            <div class="dock-btn" onclick="openApp('Page 4')"><img id="dockIcon4" src="https://placehold.co/40/white/ccc?text=🐱" alt="Btn4"></div>
+        <div class="mini-bottom-lines-large">
+            <div class="mini-line-item" onclick="editText(this)">横线自定义文案 1</div>
+            <div class="mini-line-item" onclick="editText(this)">横线自定义文案 2</div>
+            <div class="mini-line-item" onclick="editText(this)">横线自定义文案 3</div>
         </div>
+    </div>
+</div>
+
+
+</div>
+    </div> <div class="dock-capsule">
+        <div class="dock-btn" onclick="openApp('Page 1')"><img id="dockIcon1" src="https://placehold.co/40/white/ccc?text=🤍" alt="Btn1"></div>
+        <div class="dock-btn" onclick="openCoupleSpace()"><img id="dockIcon2" src="https://placehold.co/40/white/ccc?text=🍷" alt="Btn2"></div>
+        <div class="dock-btn" onclick="openWallet()"><img id="dockIcon3" src="https://placehold.co/40/white/ccc?text=🐰" alt="Btn3"></div>
+        <div class="dock-btn" onclick="openApp('Page 4')"><img id="dockIcon4" src="https://placehold.co/40/white/ccc?text=🐱" alt="Btn4"></div>
+    </div>
         
         <div class="popover-menu" id="popMenu"><div class="menu-item" onclick="changeByLink()"><i class="fas fa-link"></i> 图片链接</div><div class="menu-item" onclick="triggerFileInput()"><i class="fas fa-image"></i> 本地图片</div></div>
         <input type="file" id="fileInput" accept="image/*" style="display: none;">
@@ -320,7 +420,7 @@
                         <div class="setting-item" onclick="openDataModal()"><div class="icon-img icon-theme"></div>数据备份与重置</div>
                     </div>
                 </div>
-                
+       
                 <nav id="wechat-bottom-nav">
     <div class="nav-item active" onclick="switchAppTab(0)">
         <div class="nav-icon"></div>
@@ -649,6 +749,16 @@
         <button class="api-btn-small" onclick="fetchModels()">拉取</button>
     </div>
 </div><div class="api-input-group"><div class="flex-between"><label>Temperature</label><span id="tempDisplay">1.0</span></div><input type="range" id="apiTemp" min="0" max="2" step="0.1" value="1.0" oninput="document.getElementById('tempDisplay').innerText = this.value"></div><div class="api-divider"></div>
+<!-- ★★★ 新增：Max Tokens 设置 ★★★ -->
+<div class="api-input-group">
+    <div class="flex-between">
+        <label>Max Tokens</label>
+    </div>
+    <input type="number" class="api-input" id="apiMaxTokens" placeholder="默认 2048 (请根据使用模型来填写)" value="2048">
+    <div style="font-size:10px; color:#999; margin-top:5px;">
+        设置太大会导致 500 报错，建议gemini设置为3w
+    </div>
+</div>
 <!-- ★★★ 新增：流式传输开关 (极简版) ★★★ -->
 <div class="settings-card-box" style="margin-top: 15px; margin-bottom: 15px; padding: 10px; border: 1px solid #eee;">
     <div class="mem-row" style="margin-bottom: 0;">
@@ -1017,6 +1127,53 @@
         </div>
 
         <div class="api-divider" style="height:1px; background:#f0f0f0; margin: 10px 0 20px 0;"></div>
+<div class="section-title" style="color:#666; margin: 20px 15px 10px; font-size:14px; font-weight: bold;">第二页应用图标美化</div>
+<div class="edit-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 0 15px;">
+    
+    <div class="edit-card-white">
+        <div class="edit-card-title-black">应用 App 6</div>
+        <div class="icon-preview-box">
+            <img id="previewApp6" src="" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover; background: #eee;">
+        </div>
+        <div class="edit-btns-row-custom">
+            <button class="edit-btn-grey" onclick="changeAppIconAdvanced('appIcon6', 'link', 'previewApp6')">链接</button>
+            <button class="edit-btn-grey" onclick="changeAppIconAdvanced('appIcon6', 'local', 'previewApp6')">本地</button>
+        </div>
+    </div>
+
+    <div class="edit-card-white">
+        <div class="edit-card-title-black">应用 App 7</div>
+        <div class="icon-preview-box">
+            <img id="previewApp7" src="" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover; background: #eee;">
+        </div>
+        <div class="edit-btns-row-custom">
+            <button class="edit-btn-grey" onclick="changeAppIconAdvanced('appIcon7', 'link', 'previewApp7')">链接</button>
+            <button class="edit-btn-grey" onclick="changeAppIconAdvanced('appIcon7', 'local', 'previewApp7')">本地</button>
+        </div>
+    </div>
+
+    <div class="edit-card-white">
+        <div class="edit-card-title-black">应用 App 8</div>
+        <div class="icon-preview-box">
+            <img id="previewApp8" src="" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover; background: #eee;">
+        </div>
+        <div class="edit-btns-row-custom">
+            <button class="edit-btn-grey" onclick="changeAppIconAdvanced('appIcon8', 'link', 'previewApp8')">链接</button>
+            <button class="edit-btn-grey" onclick="changeAppIconAdvanced('appIcon8', 'local', 'previewApp8')">本地</button>
+        </div>
+    </div>
+
+    <div class="edit-card-white">
+        <div class="edit-card-title-black">应用 App 9</div>
+        <div class="icon-preview-box">
+            <img id="previewApp9" src="" style="width: 40px; height: 40px; border-radius: 10px; object-fit: cover; background: #eee;">
+        </div>
+        <div class="edit-btns-row-custom">
+            <button class="edit-btn-grey" onclick="changeAppIconAdvanced('appIcon9', 'link', 'previewApp9')">链接</button>
+            <button class="edit-btn-grey" onclick="changeAppIconAdvanced('appIcon9', 'local', 'previewApp9')">本地</button>
+        </div>
+    </div>
+</div>
 
         <!-- 3. 壁纸设置区 (图7样式) -->
         <div class="settings-label" style="margin-bottom:10px; margin-left:5px;">全局壁纸管理</div>
@@ -1945,5 +2102,7 @@
 </div>
 <div id="check-phone-root"></div>
 <script src="check_phone.js"></script>
+<script src="script.js"></script>
+<script src="page2.js"></script>
 </body>
 </html>

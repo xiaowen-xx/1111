@@ -9282,3 +9282,681 @@ textarea.wb-entry-input { height: 80px; resize: none; font-family: inherit; }
     margin-left: -2px; 
     margin-top: 2px;
 }
+/* 让主屏幕可以左右滑动 */
+.main-screen-swiper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* 核心：让滑动有那种“翻页”感 */
+    scrollbar-width: none; 
+    position: relative;
+    touch-action: pan-x; /* 告诉浏览器只允许横向手势触发滑动，防止干扰上下滚动 */
+}
+.main-screen-swiper::-webkit-scrollbar { display: none; }
+
+.screen-page {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    overflow-y: auto;
+    padding-bottom: 110px; /* 给底部的 Dock 留位置 */
+}
+/* --- 2024最新：液态玻璃层级对比样式 --- */
+
+/* --- 最终修正版：液态玻璃样式表 --- */
+
+.second-page {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    background-color: transparent;
+    background-size: cover;
+    background-position: center;
+    transition: background 0.3s ease;
+    padding-top: 60px; 
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+/* 底座：极透明 */
+.main-module {
+    width: 92%;
+    margin: 15px auto;
+    background: rgba(255, 255, 255, 0.05); 
+    backdrop-filter: blur(20px) saturate(140%);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+}
+
+/* 小组件：更白、更明显的白色半透明磨砂 */
+.sub-widget-premium {
+    background: rgba(255, 255, 255, 0.35) !important; 
+    backdrop-filter: blur(15px) saturate(160%);
+    -webkit-backdrop-filter: blur(15px) saturate(160%);
+    border: 1.5px solid rgba(255, 255, 255, 0.7) !important; 
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+}
+
+.notebook-rings {
+    height: 14px;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.5) 2.5px, transparent 3.5px);
+    background-size: 16px 100%;
+    margin-bottom: 12px;
+    opacity: 0.7;
+}
+
+.status-bar-widget {
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0 12px;
+    margin-bottom: 15px;
+    border-radius: 20px;
+}
+
+.status-item { display: flex; flex-direction: column; align-items: center; font-size: 10px; color: white; }
+.status-item i { font-size: 15px; margin-bottom: 2px; }
+.status-custom-texts { font-size: 9px; line-height: 1.2; border-left: 1px solid rgba(255,255,255,0.4); padding-left: 8px; color: white; }
+
+.editable-text-mini { cursor: pointer; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.widget-img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
+
+/* 第二页容器样式 */
+.second-page {
+    /* 让默认背景颜色与第一页（变量或具体颜色）保持一致 */
+    background-color: var(--bg-color, #FFF2F4); 
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    /* 确保容器占满全屏，这样点击任何空白处都能触发换壁纸 */
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    
+    /* 增加平滑过渡效果 */
+    transition: background 0.3s ease;
+    
+    /* 关键：如果你的第一页有内边距，这里也要保持一致 */
+    box-sizing: border-box;
+}
+/* --- 全新布局样式支持 --- */
+
+/* 通用样式工具类 */
+.icon-black-semi { color: rgba(0, 0, 0, 0.6) !important; } /* 黑色半透明图标 */
+.icon-white { color: white !important; } /* 白色图标 */
+.text-white { color: white; } /* 白色文字 */
+.editable-text-white { color: white; cursor: pointer; } /* 可编辑白色文字 */
+
+/* 宋体字体支持 (尝试多个宋体名称以兼容不同系统) */
+.font-songti {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+}
+
+/* 布局容器调整 */
+.layout-redesign {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+}
+
+/* 1. 顶部导航栏 */
+.top-nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+.nav-left-group, .nav-right-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 2. 状态指示栏 */
+.status-indicators-row {
+    display: flex;
+    font-size: 12px;
+    margin-bottom: -5px; /*稍微拉近与图片的距离*/
+}
+.status-heart-group { flex: 1; display: flex; gap: 4px; align-items: center; }
+.status-battery-group { flex: 1; text-align: center; }
+
+/* 3. 三个正方形图片网格 */
+.three-image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    aspect-ratio: 3 / 1; /* 确保整体是横向长条 */
+}
+.square-image-widget {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* 确保每个是正方形 */
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 4. 底部内容区域 */
+.bottom-content-row {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+/* 左下侧头像区域 */
+.bottom-left-avatar-area {
+    position: relative;
+    width: 60px;
+    height: 60px;
+}
+.avatar-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%; /* 圆形头像 */
+    overflow: visible; /* 允许子元素溢出 */
+    position: relative;
+}
+.avatar-container img {
+    border-radius: 50%;
+}
+.camera-overlay {
+    position: absolute;
+    bottom: -2px;
+    left: -2px;
+    font-size: 16px;
+    background: rgba(255,255,255,0.3); /* 稍微加个背景让黑色图标更明显 */
+    border-radius: 50%;
+    padding: 4px;
+}
+.time-bubble {
+    position: absolute;
+    top: -5px;
+    right: -15px;
+    background: rgba(128, 128, 128, 0.8); /* 灰色气泡 */
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+/* 右下侧文案区域 */
+.bottom-right-text-area {
+    flex: 1;
+    margin-left: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* 文字底部对齐 */
+}
+.album-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 14px;
+}
+.text-lines-group {
+    margin-left: 20px; /* 给相册图标留位置 */
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+}
+/* --- 布局精修样式 (直角/定位/宋体) --- */
+
+/* 1. 直角小组件网格 (无边框) */
+.three-image-grid-square {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px; /* 间距 */
+    margin-top: 5px;
+}
+.square-sharp-widget {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 0 !important; /* 强制直角 */
+    border: none !important; /* 去掉描边 */
+    background: rgba(255,255,255,0.2); /* 简单的半透明背景 */
+    overflow: hidden;
+}
+
+/* 2. 头像区域特殊定位 */
+.bottom-left-avatar-area {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    margin-left: 5px; /* 稍微离左边一点 */
+}
+.avatar-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    position: relative;
+}
+.camera-icon-bottom-right {
+    position: absolute;
+    bottom: -2px;
+    right: -2px; /* 放在右下角 */
+    font-size: 14px;
+    background: transparent; /* 去掉背景 */
+    z-index: 2;
+}
+/* 气泡放在头像右上角外侧 */
+.time-bubble-outside {
+    position: absolute;
+    top: -5px;
+    left: 100%; /* 放在头像右侧外面 */
+    margin-left: 5px; /* 稍微隔开一点 */
+    background: rgba(128, 128, 128, 0.8);
+    color: white;
+    font-size: 9px;
+    padding: 2px 5px;
+    border-radius: 4px;
+    white-space: nowrap;
+}
+
+/* 3. 文案特殊排版 */
+.bottom-right-text-area-custom {
+    position: absolute; /* 绝对定位方便控制整体位置 */
+    left: 80px; /* 整体往右移 */
+    top: 5px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.line-normal {
+    font-size: 11px;
+    text-align: left;
+    margin: 0;
+}
+.line-indent {
+    font-size: 11px;
+    text-align: left;
+    margin: 0;
+    margin-left: 25px; /* 第三行再往右缩进 */
+}
+
+/* 4. 相册图标定位 */
+.album-icon-position {
+    position: absolute;
+    right: 15px; /* 对应第三个组件的大致位置 */
+    top: 50px;   /* 位于文案下方 */
+    font-size: 14px;
+}
+
+/* 5. 底部椭圆磨砂条 */
+.bottom-pill-bar {
+    margin-top: 15px;
+    height: 40px;
+    border-radius: 50px !important; /* 椭圆 */
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    position: relative;
+}
+.pill-left { margin-right: 10px; font-size: 12px; }
+.pill-center { font-size: 11px; flex: 1; }
+.pill-right-icons {
+    display: flex;
+    gap: 8px;
+    font-size: 12px;
+    align-self: flex-end; /* 靠下对齐 */
+    margin-bottom: 8px; /* 稍微抬高一点点 */
+}
+
+/* 6. 宋体补充 */
+.font-songti {
+    font-family: "Songti SC", "STSong", "SimSun", serif;
+}
+/* 黑色半透明图标类 */
+.icon-black-semi {
+    color: rgba(0, 0, 0, 0.5) !important;
+}
+/* --- 2024最终修正布局样式 --- */
+
+/* 通用字体与图标 */
+.font-songti { font-family: "Songti SC", "SimSun", "STSong", serif; }
+.icon-black-semi { color: rgba(0, 0, 0, 0.45) !important; }
+
+/* 主底座内部布局 */
+.layout-redesign { display: flex; flex-direction: column; padding: 18px; }
+.top-nav-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.status-indicators-row { display: flex; align-items: center; margin-bottom: 8px; font-size: 12px; }
+
+/* 直角三组件 */
+.three-image-grid-square { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.square-sharp-widget { aspect-ratio: 1/1; border-radius: 0 !important; border: none !important; background: rgba(255,255,255,0.15); overflow: hidden; }
+
+/* 漫画气泡 */
+.manga-bubble {
+    position: absolute; top: -18px; left: 42px; background: rgba(100, 100, 100, 0.85);
+    color: white; font-size: 14px; padding: 5px 10px; border-radius: 12px; z-index: 10;
+}
+.bubble-tail {
+    position: absolute; bottom: -7px; left: 12px; width: 0; height: 0;
+    border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid rgba(100, 100, 100, 0.85);
+}
+
+/* 头像与文案 */
+.bottom-left-avatar-area { position: relative; width: 52px; height: 52px; }
+.avatar-container { width: 100%; height: 100%; border-radius: 50%; position: relative; }
+.camera-icon-bottom-right { position: absolute; bottom: 0; right: 0; font-size: 14px; }
+.shifted-right { position: absolute; left: 48%; top: 5px; }
+.album-icon-large { font-size: 26px !important; }
+.line-indent { margin-left: 20px; }
+
+/* 恢复的长条椭圆 */
+.bottom-pill-bar {
+    margin-top: 15px; height: 38px; border-radius: 40px !important;
+    display: flex; align-items: center; padding: 0 15px;
+}
+.pill-center { flex: 1; font-size: 10px; padding: 0 8px; }
+.pill-right-icons { display: flex; gap: 6px; font-size: 11px; align-self: flex-end; margin-bottom: 6px; }
+
+/* 独立的正方形组件 (右置) */
+.bottom-square-wrapper { display: flex; justify-content: flex-end; width: 92%; margin: 15px auto; }
+.mini-square-widget {
+    width: 140px; height: 140px; padding: 12px; border-radius: 20px !important;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.mini-inner-grid { display: flex; gap: 8px; }
+.mini-square-img { width: 42px; height: 42px; border-radius: 8px; background: rgba(255,255,255,0.2); overflow: hidden; }
+.mini-right-pills { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.mini-pill-white { background: rgba(255, 255, 255, 0.25); border-radius: 8px; padding: 1px; text-align: center; font-size: 9px; }
+.mini-bottom-lines { display: flex; flex-direction: column; gap: 8px; }
+.mini-line-item { font-size: 10px; color: white; border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px; }
+
+/* --- 2024最终布局精调样式 (尺寸/位置/新Grid) --- */
+
+/* 1. 大模块缩短 */
+.layout-redesign-short {
+    display: flex; flex-direction: column;
+    padding: 18px 18px 10px 18px; /* 减少底部内边距 */
+    gap: 5px; /* 减少内部间距 */
+}
+
+/* 2. 相册图标变小并上移 */
+.album-icon-small { font-size: 20px !important; } /* 变小 */
+.shifted-right-up { position: absolute; left: 48%; top: -5px; } /* 整体上移 */
+
+/* 3. 圆角长条变高 (不扁了) */
+.bottom-pill-bar-taller {
+    margin-top: 10px;
+    height: 50px; /* 高度增加 */
+    border-radius: 25px !important; /* 圆角适配新高度 */
+    display: flex; align-items: center; padding: 0 18px;
+}
+.pill-right-icons-taller {
+    display: flex; gap: 6px; font-size: 12px;
+    align-self: center; /* 垂直居中 */
+    margin-bottom: 0;
+}
+
+/* 4. ★ 底部全新 Grid 布局 (4APP + 大模块) ★ */
+.bottom-apps-grid-container {
+    display: grid;
+    /* 定义三列：两列给APP，一列给大模块 */
+    grid-template-columns: repeat(2, 58px) auto;
+    /* 定义两行 */
+    grid-template-rows: repeat(2, 58px);
+    gap: 12px; /* 统一间距 */
+    width: 92%; margin: 15px auto;
+    justify-content: end; /* 整体靠右 */
+}
+
+/* 新增的4个APP图标样式 */
+.app-icon-square {
+    width: 58px; height: 58px;
+    border-radius: 16px !important; /* 正方形圆角 */
+    overflow: hidden;
+}
+
+/* 放大的小正方形模块 (跨两行) */
+.mini-square-widget-large {
+    grid-column: 3; /* 放在第3列 */
+    grid-row: 1 / span 2; /* 跨越2行 */
+    width: 170px; height: 170px; /* 显著放大 */
+    padding: 15px; border-radius: 24px !important;
+    display: flex; flex-direction: column; gap: 12px;
+}
+
+/* 放大后内部元素的适配 */
+.mini-square-img-large { width: 50px; height: 50px; border-radius: 10px; background: rgba(255,255,255,0.2); overflow: hidden; }
+.mini-right-pills-large { flex: 1; display: flex; flex-direction: column; gap: 6px; justify-content: center; }
+.mini-bottom-lines-large { display: flex; flex-direction: column; gap: 10px; flex: 1; justify-content: flex-end;}
+/* --- 2024比例优化版样式 --- */
+
+/* 1. 大模块进一步“拍扁”为长方形 */
+.layout-redesign-rect {
+    display: flex; flex-direction: column;
+    padding: 15px 15px 8px 15px; /* 进一步压缩内边距 */
+    gap: 2px; /* 压缩内部元素距离 */
+}
+
+/* 2. 文案挪向中间并放大 */
+.shifted-center-right {
+    position: absolute;
+    left: 40%; /* 往中间挪 */
+    top: 0;
+}
+.font-enlarged {
+    font-size: 13px !important; /* 字体稍微放大点 */
+    line-height: 1.4;
+}
+
+/* 3. 底部 Grid 布局精修 (高度对齐) */
+.bottom-apps-grid-container-aligned {
+    display: grid;
+    /* 定义三列：前两列是APP(64px)，第三列是组件(140px) */
+    grid-template-columns: 64px 64px auto;
+    /* 定义两行：每行 65px + 10px 间距 = 140px 总高 */
+    grid-template-rows: 65px 65px; 
+    gap: 10px; 
+    width: 94%; 
+    margin: 5px auto; /* 减少与上方模块的间距，整体往上挪 */
+    justify-content: end;
+}
+
+/* APP图标：高度精确匹配右侧组件 */
+.app-icon-square-aligned {
+    width: 64px;
+    height: 65px; /* 精确高度 */
+    border-radius: 18px !important;
+    overflow: hidden;
+}
+
+/* 右侧大模块：固定高度以对齐左侧 APP 总高度 */
+.mini-square-widget-aligned {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    width: 145px; /* 宽度适度调整 */
+    height: 140px; /* (65 * 2) + 10 = 140px */
+    padding: 12px;
+    border-radius: 22px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* 内部小比例适配 */
+.mini-square-img-large { width: 45px; height: 45px; border-radius: 10px; }
+.mini-bottom-lines-large { gap: 6px; }
+.mini-line-item { font-size: 9.5px; border-bottom: 1px solid rgba(255,255,255,0.2); }
+/* --- 2024最终布局精调样式 (间距统一化) --- */
+
+/* 保持大模块扁平 */
+.layout-redesign-rect {
+    display: flex; flex-direction: column;
+    padding: 15px 15px 8px 15px;
+    gap: 2px;
+}
+
+/* 文案位置与大小保持不变 */
+.shifted-center-right { position: absolute; left: 40%; top: 0; }
+.font-enlarged { font-size: 13px !important; line-height: 1.4; }
+
+/* 恢复 2x2 布局并缩小图标 */
+.bottom-apps-grid-container-aligned {
+    display: grid;
+    grid-template-columns: repeat(2, 60px) auto !important; /* 前两列窄图标，第三列大组件 */
+    grid-template-rows: 85px 85px !important; /* 留出文字高度 */
+    gap: 15px !important;
+    width: 94%; 
+    margin: 15px auto; 
+    justify-content: end;
+}
+
+.app-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 模拟主屏图标尺寸 + 白色半透明背景 */
+.app-icon-square-aligned {
+    width: 55px !important;
+    height: 55px !important;
+    border-radius: 14px !important;
+    background: rgba(255, 255, 255, 0.4) !important; /* 白色半透明 */
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.app-label {
+    margin-top: 5px;
+    font-size: 10px;
+    color: white;
+    font-family: "Songti SC", serif;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* 粉色全屏页面样式 */
+#pinkPageOverlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: #FFC0CB; /* 纯粉色 */
+    z-index: 9999;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* 底部总容器：左侧APP + 右侧组件 */
+.bottom-apps-grid-container-aligned {
+    display: flex;
+    justify-content: center; /* 整体居中 */
+    align-items: flex-start;
+    gap: 15px;               /* APP矩阵与右侧组件的间距 */
+    width: 94%;
+    margin: 20px auto;       /* 距离上方大模块的间距 */
+}
+
+/* 左侧 2x2 APP 矩阵 */
+.left-apps-matrix {
+    display: grid;
+    grid-template-columns: repeat(2, 60px); /* 固定两列，每列60px */
+    grid-template-rows: repeat(2, 85px);    /* 固定两行，高度包含图标+文字 */
+    gap: 10px;                              /* APP之间的上下左右间距 */
+}
+
+/* APP 单体包装 */
+.app-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* APP 图标尺寸与半透明样式 */
+.app-icon-square-aligned {
+    width: 55px !important;
+    height: 55px !important;
+    border-radius: 14px !important;
+    background: rgba(255, 255, 255, 0.4) !important; /* 白色半透明背景 */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+/* APP 标签文字 */
+.app-label {
+    margin-top: 5px;
+    font-size: 10px;
+    color: white;
+    font-family: "Songti SC", serif;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* 右侧小正方形模块尺寸适配 */
+.mini-square-widget-aligned {
+    width: 155px;
+    height: 155px; /* 差不多和左边两行APP对齐 */
+    padding: 15px;
+    border-radius: 20px !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+/* 美化中心：白色卡片容器 */
+.edit-card-white {
+    background: #FFFFFF !important; /* 纯白背景 */
+    padding: 15px 12px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    text-align: center;
+    border: 1px solid #f0f0f0;
+}
+
+/* 卡片内的黑色标题 */
+.edit-card-title-black {
+    color: #333333 !important; /* 黑色字体 */
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* 按钮行布局 */
+.edit-btns-row-custom {
+    display: flex;
+    gap: 8px;
+}
+
+/* 灰色背景、黑色字体的按钮 */
+.edit-btn-grey {
+    flex: 1;
+    background-color: #F2F2F2 !important; /* 灰色背景 */
+    color: #000000 !important;          /* 黑色字体 */
+    border: none;
+    padding: 8px 0;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.edit-btn-grey:active {
+    background-color: #E5E5E5 !important; /* 点击时变深一点点 */
+}
+/* 2. 美化中心预览框样式 */
+.icon-preview-box {
+    margin: 10px auto;
+    width: 50px;
+    height: 50px;
+    background: #f5f5f5;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #eee;
+}
